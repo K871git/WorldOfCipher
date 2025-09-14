@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BhashaMaster - AI-Powered Indian Language Learning</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans:wdth,wght@75..100,300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&family=Yatra+One&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4A3AFF;
+            --primary-dark: #3A2AE0;
+            --secondary: #FF6B35;
+            --accent: #00C897;
+            --light: #F8FAFF;
+            --dark: #2D3748;
+            --success: #0CA678;
+            --premium: #FFD166;
+            --hindi: #E53E3E;
+            --bengali: #DD6B20;
+            --telugu: #38A169;
+            --marathi: #4A3AFF;
+            --tamil: #9F7AEA;
+            --gujarati: #319795;
+            --kannada: #805AD5;
+            --punjabi: #D69E2E;
+            --malayalam: #00C897;
+            --odiya: #D53F8C;
+            --saffron: #FF9933;
+            --white: #FFFFFF;
+            --green: #138808;
+            --peacock-blue: #1F8EB0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 153, 51, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 70%, rgba(19, 136, 8, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 30%, rgba(74, 58, 255, 0.1) 0%, transparent 30%);
+            z-index: -1;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+        }
+        
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            font-family: 'Yatra One', cursive;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 28px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 16px;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--saffron), var(--green));
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(74, 58, 255, 0.25);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #E65A2B;
+            box-shadow: 0 6px 16px rgba(255, 107, 53, 0.3);
+        }
+        
+        .btn-premium {
+            background: linear-gradient(135deg, var(--premium), #FFB020);
+        }
+        
+        .btn-premium:hover {
+            background: linear-gradient(135deg, #FFC44D, #FFB020);
+            box-shadow: 0 6px 16px rgba(255, 209, 102, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 100px;
+            background: url('https://images.unsplash.com/photo-1529255484355-cb73c33c04bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') no-repeat center center;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(74, 58, 255, 0.7) 0%, rgba(0, 200, 151, 0.7) 100%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-family: 'Yatra One', cursive;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-text h1 span {
+            color: var(--premium);
+            position: relative;
+        }
+        
+        .hero-text h1 span::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(135deg, rgba(255, 209, 102, 0.5) 0%, rgba(255, 176, 32, 0.5) 100%);
+            z-index: -1;
+            border-radius: 4px;
+        }
+        
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-badges {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .badge {
+            padding: 8px 16px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            color: var(--dark);
+        }
+        
+        .badge i {
+            margin-right: 6px;
+            color: var(--success);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        /* Unique Selling Points */
+        .usp {
+            padding: 80px 0;
+            background-color: white;
+            position: relative;
+        }
+        
+        .usp::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%234a3aff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            z-index: 0;
+        }
+        
+        .usp-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .usp-card {
+            text-align: center;
+            padding: 40px 30px;
+            border-radius: 16px;
+            background: white;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid rgba(74, 58, 255, 0.1);
+        }
+        
+        .usp-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .usp-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+            position: relative;
+        }
+        
+        .usp-icon::after {
+            content: "";
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            opacity: 0.2;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            70% {
+                transform: scale(1.1);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+        }
+        
+        .usp-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+            font-size: 22px;
+        }
+        
+        /* Languages */
+        .languages {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #F8FAFF 0%, #E6EBFA 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .languages::before {
+            content: "";
+            position: absolute;
+            bottom: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%234a3aff' d='M20,20 L80,20 L80,80 L20,80 Z' opacity='0.05'/%3E%3Cpath fill='%234a3aff' d='M30,30 L70,30 L70,70 L30,70 Z' opacity='0.05'/%3E%3Cpath fill='%234a3aff' d='M40,40 L60,40 L60,60 L40,60 Z' opacity='0.05'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+            font-family: 'Yatra One', cursive;
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+        
+        .language-card {
+            background-color: white;
+            border-radius: 16px;
+            padding: 25px 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .language-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--saffron), var(--white), var(--green));
+            z-index: 2;
+        }
+        
+        .language-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .language-card.hindi:hover {
+            border-color: var(--hindi);
+        }
+        
+        .language-card.bengali:hover {
+            border-color: var(--bengali);
+        }
+        
+        .language-card.telugu:hover {
+            border-color: var(--telugu);
+        }
+        
+        .language-card.marathi:hover {
+            border-color: var(--marathi);
+        }
+        
+        .language-card.tamil:hover {
+            border-color: var(--tamil);
+        }
+        
+        .language-card.gujarati:hover {
+            border-color: var(--gujarati);
+        }
+        
+        .language-card.kannada:hover {
+            border-color: var(--kannada);
+        }
+        
+        .language-card.punjabi:hover {
+            border-color: var(--punjabi);
+        }
+        
+        .language-card.malayalam:hover {
+            border-color: var(--malayalam);
+        }
+        
+        .language-card.odiya:hover {
+            border-color: var(--odiya);
+        }
+        
+        .language-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 32px;
+            color: white;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .hindi .language-icon {
+            background: linear-gradient(135deg, var(--hindi), #C53030);
+        }
+        
+        .bengali .language-icon {
+            background: linear-gradient(135deg, var(--bengali), #C05621);
+        }
+        
+        .telugu .language-icon {
+            background: linear-gradient(135deg, var(--telugu), #2F855A);
+        }
+        
+        .marathi .language-icon {
+            background: linear-gradient(135deg, var(--marathi), #3A2AE0);
+        }
+        
+        .tamil .language-icon {
+            background: linear-gradient(135deg, var(--tamil), #805AD5);
+        }
+        
+        .gujarati .language-icon {
+            background: linear-gradient(135deg, var(--gujarati), #2C7A7B);
+        }
+        
+        .kannada .language-icon {
+            background: linear-gradient(135deg, var(--kannada), #6B46C1);
+        }
+        
+        .punjabi .language-icon {
+            background: linear-gradient(135deg, var(--punjabi), #B7791F);
+        }
+        
+        .malayalam .language-icon {
+            background: linear-gradient(135deg, var(--malayalam), #00A37A);
+        }
+        
+        .odiya .language-icon {
+            background: linear-gradient(135deg, var(--odiya), #B83280);
+        }
+        
+        .language-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .language-card p {
+            font-size: 14px;
+            color: #64748b;
+        }
+        
+        /* AI Features */
+        .ai-features {
+            padding: 100px 0;
+            background-color: white;
+            position: relative;
+        }
+        
+        .ai-features::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234a3aff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border: 1px solid #E2E8F0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--saffron), var(--white), var(--green));
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            transform: rotate(45deg);
+            box-shadow: 0 10px 20px rgba(74, 58, 255, 0.2);
+        }
+        
+        .feature-icon i {
+            font-size: 40px;
+            color: white;
+            transform: rotate(-45deg);
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+            font-size: 22px;
+        }
+        
+        .feature-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #F8FAFF 0%, #E6EBFA 100%);
+            position: relative;
+        }
+        
+        .how-it-works::after {
+            content: "";
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%234a3aff' opacity='0.05'/%3E%3Ccircle cx='50' cy='50' r='30' fill='%234a3aff' opacity='0.05'/%3E%3Ccircle cx='50' cy='50' r='20' fill='%234a3aff' opacity='0.05'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 50px 0;
+        }
+        
+        .process-steps::before {
+            content: "";
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--saffron), var(--white), var(--green));
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            box-shadow: 0 8px 16px rgba(74, 58, 255, 0.3);
+            position: relative;
+        }
+        
+        .step-number::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            opacity: 0.2;
+        }
+        
+        .step h3 {
+            margin-bottom: 10px;
+            color: var(--dark);
+            font-size: 20px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background-color: white;
+            position: relative;
+        }
+        
+        .testimonials::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%234a3aff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            z-index: 0;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-card {
+            background-color: var(--light);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(74, 58, 255, 0.1);
+        }
+        
+        .testimonial-card::before {
+            content: """;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 100px;
+            color: var(--primary);
+            opacity: 0.1;
+            font-family: Arial;
+            line-height: 1;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-weight: 600;
+            font-size: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .author-details h4 {
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+        
+        .author-details p {
+            color: #64748b;
+            font-size: 14px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 100px 0;
+            background: url('https://images.unsplash.com/photo-1532664189809-02133fee698d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .cta::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(74, 58, 255, 0.8) 0%, rgba(0, 200, 151, 0.8) 100%);
+            z-index: 1;
+        }
+        
+        .cta .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-family: 'Yatra One', cursive;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .btn-light {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .btn-light:hover {
+            background-color: #f0f0f0;
+            box-shadow: 0 6px 16px rgba(255,255,255,0.2);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            color: white;
+            padding: 60px 0 30px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--saffron), var(--white), var(--green));
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--saffron), var(--green));
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column a {
+            color: #CBD5E0;
+            text-decoration: none;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .footer-column a::before {
+            content: "•";
+            color: var(--accent);
+            margin-right: 8px;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            color: white;
+        }
+        
+        .social-links a:hover {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #A0AEC0;
+            font-size: 14px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 50px;
+                text-align: center;
+            }
+            
+            .hero-badges, .hero-buttons {
+                justify-content: center;
+            }
+            
+            .usp-container, .features-grid, .testimonial-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .language-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .usp-container, .features-grid, .testimonial-grid, .language-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .process-steps::before {
+                display: none;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <i class="fas fa-language"></i>
+                    BhashaMaster
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Languages</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+                <a href="#" class="btn">Get Started</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Embrace India's Soul Through <span>Language</span></h1>
+                    <p>Discover the beauty of Indian languages with our AI-powered platform. Learn at your own pace while experiencing the rich cultural heritage of India.</p>
+                    <div class="hero-badges">
+                        <div class="badge"><i class="fas fa-check-circle"></i> Culturally immersive</div>
+                        <div class="badge"><i class="fas fa-check-circle"></i> AI-personalized</div>
+                        <div class="badge"><i class="fas fa-check-circle"></i> 15+ languages</div>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn">Start Learning Free</a>
+                        <a href="#" class="btn btn-premium">Go Premium</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Unique Selling Points -->
+    <section class="usp">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose BhashaMaster?</h2>
+                <p>Experience language learning like never before with our innovative approach</p>
+            </div>
+            <div class="usp-container">
+                <div class="usp-card">
+                    <div class="usp-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI-Powered Learning</h3>
+                    <p>Our intelligent system adapts to your progress and creates personalized lessons just for you.</p>
+                </div>
+                <div class="usp-card">
+                    <div class="usp-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Self-Paced Training</h3>
+                    <p>No scheduled classes. Learn whenever you want, at your own pace, without pressure.</p>
+                </div>
+                <div class="usp-card">
+                    <div class="usp-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Cultural Immersion</h3>
+                    <p>Learn not just the language but also the cultural context, traditions, and customs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Languages -->
+    <section class="languages">
+        <div class="container">
+            <div class="section-title">
+                <h2>Discover Indian Languages</h2>
+                <p>Explore our diverse collection of Indian languages with unique learning paths for each</p>
+            </div>
+            <div class="language-grid">
+                <div class="language-card hindi">
+                    <div class="language-icon">
+                        <i class="fas fa-om"></i>
+                    </div>
+                    <h3>Hindi</h3>
+                    <p>500M+ speakers</p>
+                </div>
+                <div class="language-card bengali">
+                    <div class="language-icon">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <h3>Bengali</h3>
+                    <p>250M+ speakers</p>
+                </div>
+                <div class="language-card telugu">
+                    <div class="language-icon">
+                        <i class="fas fa-peacock"></i>
+                    </div>
+                    <h3>Telugu</h3>
+                    <p>95M+ speakers</p>
+                </div>
+                <div class="language-card marathi">
+                    <div class="language-icon">
+                        <i class="fas fa-fort-awesome"></i>
+                    </div>
+                    <h3>Marathi</h3>
+                    <p>90M+ speakers</p>
+                </div>
+                <div class="language-card tamil">
+                    <div class="language-icon">
+                        <i class="fas fa-temple"></i>
+                    </div>
+                    <h3>Tamil</h3>
+                    <p>80M+ speakers</p>
+                </div>
+                <div class="language-card gujarati">
+                    <div class="language-icon">
+                        <i class="fas fa-dharmachakra"></i>
+                    </div>
+                    <h3>Gujarati</h3>
+                    <p>55M+ speakers</p>
+                </div>
+                <div class="language-card kannada">
+                    <div class="language-icon">
+                        <i class="fas fa-elephant"></i>
+                    </div>
+                    <h3>Kannada</h3>
+                    <p>50M+ speakers</p>
+                </div>
+                <div class="language-card punjabi">
+                    <div class="language-icon">
+                        <i class="fas fa-drum"></i>
+                    </div>
+                    <h3>Punjabi</h3>
+                    <p>45M+ speakers</p>
+                </div>
+                <div class="language-card malayalam">
+                    <div class="language-icon">
+                        <i class="fas fa-coconut"></i>
+                    </div>
+                    <h3>Malayalam</h3>
+                    <p>35M+ speakers</p>
+                </div>
+                <div class="language-card odiya">
+                    <div class="language-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h3>Odiya</h3>
+                    <p>35M+ speakers</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Features -->
+    <section class="ai-features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Smart Learning Features</h2>
+                <p>Our AI-powered platform adapts to your unique learning style and pace</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Adaptive Learning Path</h3>
+                    <p>Our AI creates a personalized curriculum based on your goals, progress, and learning patterns.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    <h3>Speech Recognition</h3>
+                    <p>Perfect your pronunciation with our advanced speech technology that provides instant feedback.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Progress Analytics</h3>
+                    <p>Track your improvement with detailed insights and recommendations for areas needing work.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>How BhashaMaster Works</h2>
+                <p>Start your language learning journey in just a few simple steps</p>
+            </div>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Choose Your Language</h3>
+                    <p>Select from 15+ Indian languages</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Set Your Goals</h3>
+                    <p>Define what you want to achieve</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Learn Daily</h3>
+                    <p>Practice with personalized lessons</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Track Progress</h3>
+                    <p>See your improvement over time</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Learners Say</h2>
+                <p>Join thousands of successful language learners</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        BhashaMaster helped me learn Tamil at my own pace while balancing my busy work schedule. The cultural insights make the learning experience truly enriching.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RP</div>
+                        <div class="author-details">
+                            <h4>Raj Patel</h4>
+                            <p>Software Engineer from Gujarat</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        As a Bengali wanting to connect with my Punjabi in-laws, this app has been a blessing. The cultural context in lessons makes all the difference.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SD</div>
+                        <div class="author-details">
+                            <h4>Sunita Das</h4>
+                            <p>Teacher from Kolkata</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Start Your Language Journey Today</h2>
+            <p>Join over 500,000 learners who are mastering Indian languages with our unique AI-powered platform</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-light">Get Started for Free</a>
+                <a href="#" class="btn btn-premium">Try Premium</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>BhashaMaster</h3>
+                    <p>AI-powered language learning platform specializing in Indian languages with self-paced training.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Languages</h3>
+                    <ul>
+                        <li><a href="#">Hindi</a></li>
+                        <li><a href="#">Bengali</a></li>
+                        <li><a href="#">Telugu</a></li>
+                        <li><a href="#">Marathi</a></li>
+                        <li><a href="#">Tamil</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 BhashaMaster. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation for elements when they come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            // Observe elements that should animate in
+            const elementsToAnimate = document.querySelectorAll('.usp-card, .language-card, .feature-card, .testimonial-card');
+            elementsToAnimate.forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

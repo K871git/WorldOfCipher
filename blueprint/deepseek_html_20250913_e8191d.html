@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BhashaAI - Master Indian Languages with AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans:wdth,wght@75..100,300..700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --secondary: #f97316;
+            --accent: #ec4899;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --success: #10b981;
+            --premium: #f59e0b;
+            --hindi: #dc2626;
+            --bengali: #ea580c;
+            --telugu: #65a30d;
+            --marathi: #4338ca;
+            --tamil: #db2777;
+            --gujarati: #0891b2;
+            --kannada: #7c3aed;
+            --punjabi: #ca8a04;
+            --malayalam: #0d9488;
+            --odiya: #c026d3;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: #f1f5f9;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+        }
+        
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 28px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 16px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.25);
+        }
+        
+        .btn-premium {
+            background: linear-gradient(135deg, var(--premium), #f97316);
+        }
+        
+        .btn-premium:hover {
+            background: linear-gradient(135deg, #e69008, #f97316);
+            box-shadow: 0 6px 16px rgba(245, 158, 11, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+        }
+        
+        .hero::after {
+            content: "";
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: 50px;
+        }
+        
+        .hero-text h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            line-height: 1.2;
+        }
+        
+        .hero-text h1 span {
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .hero-text h1 span::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.3) 0%, rgba(236, 72, 153, 0.3) 100%);
+            z-index: -1;
+        }
+        
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #475569;
+        }
+        
+        .hero-badges {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .badge {
+            padding: 8px 16px;
+            background-color: white;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+        }
+        
+        .badge i {
+            margin-right: 6px;
+            color: var(--success);
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 24px 48px rgba(0,0,0,0.15);
+            transform: perspective(800px) rotateY(-10deg);
+            transition: transform 0.5s;
+        }
+        
+        .hero-image img:hover {
+            transform: perspective(800px) rotateY(0);
+        }
+        
+        /* Languages */
+        .languages {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+        
+        .language-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .language-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .language-card.hindi:hover {
+            border-color: var(--hindi);
+        }
+        
+        .language-card.bengali:hover {
+            border-color: var(--bengali);
+        }
+        
+        .language-card.telugu:hover {
+            border-color: var(--telugu);
+        }
+        
+        .language-card.marathi:hover {
+            border-color: var(--marathi);
+        }
+        
+        .language-card.tamil:hover {
+            border-color: var(--tamil);
+        }
+        
+        .language-card.gujarati:hover {
+            border-color: var(--gujarati);
+        }
+        
+        .language-card.kannada:hover {
+            border-color: var(--kannada);
+        }
+        
+        .language-card.punjabi:hover {
+            border-color: var(--punjabi);
+        }
+        
+        .language-card.malayalam:hover {
+            border-color: var(--malayalam);
+        }
+        
+        .language-card.odiya:hover {
+            border-color: var(--odiya);
+        }
+        
+        .language-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 28px;
+            color: white;
+        }
+        
+        .hindi .language-icon {
+            background-color: var(--hindi);
+        }
+        
+        .bengali .language-icon {
+            background-color: var(--bengali);
+        }
+        
+        .telugu .language-icon {
+            background-color: var(--telugu);
+        }
+        
+        .marathi .language-icon {
+            background-color: var(--marathi);
+        }
+        
+        .tamil .language-icon {
+            background-color: var(--tamil);
+        }
+        
+        .gujarati .language-icon {
+            background-color: var(--gujarati);
+        }
+        
+        .kannada .language-icon {
+            background-color: var(--kannada);
+        }
+        
+        .punjabi .language-icon {
+            background-color: var(--punjabi);
+        }
+        
+        .malayalam .language-icon {
+            background-color: var(--malayalam);
+        }
+        
+        .odiya .language-icon {
+            background-color: var(--odiya);
+        }
+        
+        .language-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .language-card p {
+            font-size: 14px;
+            color: #64748b;
+        }
+        
+        /* AI Features */
+        .ai-features {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            transform: rotate(45deg);
+        }
+        
+        .feature-icon i {
+            font-size: 32px;
+            color: white;
+            transform: rotate(-45deg);
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+            font-size: 20px;
+        }
+        
+        /* Test Series */
+        .test-series {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .test-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .test-card {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            background: white;
+        }
+        
+        .test-card-header {
+            padding: 25px 30px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+        }
+        
+        .test-card-header h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        
+        .test-card-body {
+            padding: 30px;
+        }
+        
+        .test-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        
+        .test-features li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .test-features i {
+            margin-right: 10px;
+            color: var(--success);
+        }
+        
+        /* Premium Section */
+        .premium {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+        }
+        
+        .premium-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .premium-text {
+            flex: 1;
+            padding-right: 50px;
+        }
+        
+        .premium-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .premium-text p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #cbd5e1;
+        }
+        
+        .premium-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .premium-features li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .premium-features i {
+            margin-right: 12px;
+            color: var(--premium);
+            font-size: 20px;
+        }
+        
+        .premium-image {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+        
+        .premium-image img {
+            max-width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 24px 48px rgba(0,0,0,0.25);
+        }
+        
+        .premium-badge {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            background: linear-gradient(135deg, var(--premium), #f97316);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3);
+        }
+        
+        /* Progress Section */
+        .progress {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .progress-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 20px;
+            padding: 50px;
+        }
+        
+        .progress-text {
+            flex: 1;
+            padding-right: 50px;
+        }
+        
+        .progress-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .progress-text p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #475569;
+        }
+        
+        .progress-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .progress-image img {
+            max-width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        /* CTA */
+        .cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #e2e8f0;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .language-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .language-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .hero-content, .premium-content, .progress-container {
+                flex-direction: column;
+            }
+            
+            .hero-text, .premium-text, .progress-text {
+                padding-right: 0;
+                margin-bottom: 40px;
+                text-align: center;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .test-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .language-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .language-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .progress-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-brain"></i>
+                    BhashaAI
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Languages</a></li>
+                    <li><a href="#">Test Series</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+                <a href="#" class="btn btn-premium">Try Premium</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Master <span>15+ Indian Languages</span> with AI-Powered Learning</h1>
+                    <p>BhashaAI adapts to your learning style with personalized lessons, intelligent test series, and real-time progress tracking. Learn any Indian language in just weeks!</p>
+                    <div class="hero-badges">
+                        <div class="badge"><i class="fas fa-robot"></i> AI Powered</div>
+                        <div class="badge"><i class="fas fa-bolt"></i> Fast Learning</div>
+                        <div class="badge"><i class="fas fa-chart-line"></i> Progress Tracking</div>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn">Start Learning</a>
+                        <a href="#" class="btn btn-premium">Try Premium Free</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Language Learning App">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Languages -->
+    <section class="languages">
+        <div class="container">
+            <div class="section-title">
+                <h2>Learn 15+ Indian Languages</h2>
+                <p>Comprehensive courses for all major Indian languages with native speaker content</p>
+            </div>
+            <div class="language-grid">
+                <div class="language-card hindi">
+                    <div class="language-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Hindi</h3>
+                    <p>India's national language</p>
+                </div>
+                <div class="language-card bengali">
+                    <div class="language-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Bengali</h3>
+                    <p>East India & Bangladesh</p>
+                </div>
+                <div class="language-card telugu">
+                    <div class="language-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Telugu</h3>
+                    <p>Andhra & Telangana</p>
+                </div>
+                <div class="language-card marathi">
+                    <div class="language-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Marathi</h3>
+                    <p>Maharashtra</p>
+                </div>
+                <div class="language-card tamil">
+                    <div class="language-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Tamil</h3>
+                    <p>Tamil Nadu</p>
+                </div>
+                <div class="language-card gujarati">
+                    <div class="language-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Gujarati</h3>
+                    <p>Gujarat</p>
+                </div>
+                <div class="language-card kannada">
+                    <div class="language-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Kannada</h3>
+                    <p>Karnataka</p>
+                </div>
+                <div class="language-card punjabi">
+                    <div class="language-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Punjabi</h3>
+                    <p>Punjab region</p>
+                </div>
+                <div class="language-card malayalam">
+                    <div class="language-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Malayalam</h3>
+                    <p>Kerala</p>
+                </div>
+                <div class="language-card odiya">
+                    <div class="language-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Odiya</h3>
+                    <p>Odisha</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Features -->
+    <section class="ai-features">
+        <div class="container">
+            <div class="section-title">
+                <h2>AI-Powered Personalized Learning</h2>
+                <p>Our advanced AI engine adapts to your learning style and progress</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-cog"></i>
+                    </div>
+                    <h3>Personalized Learning Path</h3>
+                    <p>AI creates a custom curriculum based on your goals, pace, and learning style</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Smart Recommendations</h3>
+                    <p>Get word suggestions and practice exercises tailored to your progress</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>Progress Analytics</h3>
+                    <p>Detailed insights into your strengths and areas needing improvement</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    <h3>Speech Recognition</h3>
+                    <p>Perfect your pronunciation with real-time feedback</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <h3>Adaptive Test Series</h3>
+                    <p>Tests that adjust difficulty based on your performance</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Gamified Learning</h3>
+                    <p>Learn through games and challenges that make studying fun</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test Series -->
+    <section class="test-series">
+        <div class="container">
+            <div class="section-title">
+                <h2>Comprehensive Test Series</h2>
+                <p>AI-generated tests tailored to your learning progress and goals</p>
+            </div>
+            <div class="test-cards">
+                <div class="test-card">
+                    <div class="test-card-header">
+                        <h3>Basic Proficiency Test Series</h3>
+                        <p>For beginners starting their language journey</p>
+                    </div>
+                    <div class="test-card-body">
+                        <ul class="test-features">
+                            <li><i class="fas fa-check-circle"></i> Vocabulary builder tests</li>
+                            <li><i class="fas fa-check-circle"></i> Basic grammar assessments</li>
+                            <li><i class="fas fa-check-circle"></i> Simple conversation practice</li>
+                            <li><i class="fas fa-check-circle"></i> Pronunciation evaluation</li>
+                            <li><i class="fas fa-check-circle"></i> 15+ practice tests per language</li>
+                        </ul>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                </div>
+                <div class="test-card">
+                    <div class="test-card-header">
+                        <h3>Advanced Mastery Test Series</h3>
+                        <p>For achieving fluency and cultural understanding</p>
+                    </div>
+                    <div class="test-card-body">
+                        <ul class="test-features">
+                            <li><i class="fas fa-check-circle"></i> Complex grammar tests</li>
+                            <li><i class="fas fa-check-circle"></i> Advanced vocabulary challenges</li>
+                            <li><i class="fas fa-check-circle"></i> Real-world conversation scenarios</li>
+                            <li><i class="fas fa-check-circle"></i> Cultural context assessments</li>
+                            <li><i class="fas fa-check-circle"></i> 30+ comprehensive tests per language</li>
+                        </ul>
+                        <a href="#" class="btn btn-premium">Premium Feature</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Section -->
+    <section class="premium">
+        <div class="container">
+            <div class="premium-content">
+                <div class="premium-text">
+                    <h2>Unlock Premium AI Features</h2>
+                    <p>Get personalized learning paths, advanced tests, and detailed progress analytics with BhashaAI Premium</p>
+                    <ul class="premium-features">
+                        <li><i class="fas fa-star"></i> AI-powered personalized lesson plans</li>
+                        <li><i class="fas fa-star"></i> Custom test series generated based on your progress</li>
+                        <li><i class="fas fa-star"></i> Advanced speech recognition for pronunciation</li>
+                        <li><i class="fas fa-star"></i> Download lessons for offline learning</li>
+                        <li><i class="fas fa-star"></i> Priority support from language experts</li>
+                    </ul>
+                    <a href="#" class="btn btn-premium">Get Premium</a>
+                </div>
+                <div class="premium-image">
+                    <div class="premium-badge">Most Popular</div>
+                    <img src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Premium Features">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Section -->
+    <section class="progress">
+        <div class="container">
+            <div class="progress-container">
+                <div class="progress-text">
+                    <h2>See Real Progress in Just One Week</h2>
+                    <p>Our structured learning approach ensures you'll have basic conversational skills in your chosen language within just 7 days of consistent practice.</p>
+                    <ul class="premium-features">
+                        <li><i class="fas fa-check" style="color: var(--success);"></i> Learn essential greetings and phrases</li>
+                        <li><i class="fas fa-check" style="color: var(--success);"></i> Basic grammar foundation</li>
+                        <li><i class="fas fa-check" style="color: var(--success);"></i> Simple conversations practice</li>
+                        <li><i class="fas fa-check" style="color: var(--success);"></i> Core vocabulary of 200+ words</li>
+                    </ul>
+                    <a href="#" class="btn">Start Your 7-Day Challenge</a>
+                </div>
+                <div class="progress-image">
+                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Learning Progress">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <h2>Start Your Language Journey Today</h2>
+            <p>Join over 500,000 users learning Indian languages with BhashaAI. Get started for free and experience the power of AI-driven language learning.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn" style="background-color: white; color: var(--primary);">Sign Up Free</a>
+                <a href="#" class="btn btn-premium">Try Premium</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>BhashaAI</h3>
+                    <p>The most intelligent way to learn Indian languages with AI-powered personalization.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Product</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Test Series</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Premium</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 BhashaAI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
