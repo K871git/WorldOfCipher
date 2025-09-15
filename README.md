@@ -104,3 +104,12 @@ This document outlines the MVP roadmap, tech stack, and deployment plan.
 
 ## License
 MIT License © CipherAura
+
+
+Phase 0: Foundation & Discovery (Diwali 2025 - Dec 2025) - "The
+Blueprint Phase"
+Objective: Finalize planning, design, and setup before a single line of code is written.
+• Competitive Analysis & Feature Benchmarking
+• Define Core Technical Principles (Microservices, API-First, Privacy)
+• Finalize 'Week to Conversational' Curriculum
+• High-Fidelity UI/UX Prototyping with Figma/Adobe XD
