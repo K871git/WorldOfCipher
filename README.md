@@ -113,3 +113,5 @@ Objective: Finalize planning, design, and setup before a single line of code is 
 • Define Core Technical Principles (Microservices, API-First, Privacy)
 • Finalize 'Week to Conversational' Curriculum
 • High-Fidelity UI/UX Prototyping with Figma/Adobe XD
+
+project application language will be the flutter (dart)
