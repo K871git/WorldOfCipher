@@ -1,0 +1,8 @@
+Phase - I : project landing page
+
+. Landing Page — Visual & Interactive Design
+• Bold brand aesthetics: mascot/avatar, subtle animations, festival-ready themes.
+• Clear CTA above the fold: 'Start Learning Free' or 'Try a Demo'.
+• Progressive onboarding with micro-interactions for immediate delight.
+• Implementation: Figma prototypes → Next.js + Tailwind → Deploy to Vercel/Netlify.
+• Integrate early analytics (Plausible/Matomo) for funnel optimisation.
