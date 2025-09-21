@@ -115,3 +115,7 @@ Objective: Finalize planning, design, and setup before a single line of code is 
 • High-Fidelity UI/UX Prototyping with Figma/Adobe XD
 
 project application language will be the flutter (dart)
+
+# Blueprint is ready :
+  • Started the development of the landing page for the application : 21-09-2025
+  s  
