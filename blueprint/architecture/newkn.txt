@@ -1,0 +1,9 @@
+* Supabase
+
+BAAS : Backend as a Service
+Auth; DB; Storage; Realtime
+* using API'S of the BAAS, so I will interact with the application through the API'S
+@RLS : Row Level Security or Row Security Policy
+
+
+* MCP servers :
