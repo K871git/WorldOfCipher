@@ -1,0 +1,9 @@
+
+
+✅ In short:
+Node.js = Runtime like PHP.
+Express.js = Minimal framework like Laravel-lite.
+React = UI library like Blade but dynamic.
+Angular = Full front-end framework, Laravel-like philosophy.
+MongoDB = NoSQL JSON storage.
+Postgres/MySQL/MariaDB = Relational DBs, with Postgres = more advanced, MySQL = standard, MariaDB = community alternative.
