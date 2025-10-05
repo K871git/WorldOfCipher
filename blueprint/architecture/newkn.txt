@@ -16,3 +16,26 @@ The MCP server advertises what it can do,
  executes the requested action (e.g., query a DB, read files, call GitHub), 
  then returns structured results — all via the MCP protocol (which uses JSON-RPC 2.0). 
 Think of an MCP server as a smart adapter between an LLM and a real system.
+
+* Architecture : 
+MCP Client (host-side): integrated in the AI app/agent (e.g., desktop client, chatbot embed). 
+It queries the MCP server for capabilities and routes tool calls from the LLM to the server.
+MCP Server: advertises a manifest (what methods/actions it supports), receives JSON-RPC requests,
+ performs the action (authenticating to downstream resources if needed), and returns results.
+Protocol
+
+Registry/Discovery (optional): catalog of available MCP servers (local/remote), 
+often with metadata, versions, and trust info. Many deployments use a controlled registry for security.
+
+Transport & Protocol: JSON-RPC 2.0 over TLS is the usual transport; 
+the protocol defines the method names, parameter schemas, and expected result shapes
+
+*What an MCP server is responsible for (technical checklist)
+- Capability advertisement: expose a machine-readable manifest of methods, params, descriptions, and required scopes.
+- Input validation & schema enforcement: validate JSON inputs and enforce types and limits.
+- Authentication to downstream services: hold/rotate credentials (OAuth, service tokens) for APIs the server wraps.
+- Authorization & scoping: map requested actions to minimal scopes/permissions and enforce them.
+- Execution sandboxing / safe execution: run commands or code in an isolated environment where possible.
+- Auditing / logging / observability: log requests, responses, and side effects for audit and incident response.
+- Rate limiting & throttling: protect downstream resources and prevent runaway tool calls.
+- Error handling & idempotency guarantees: document which methods are safe to retry and which are not.
