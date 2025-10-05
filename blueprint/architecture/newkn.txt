@@ -7,3 +7,12 @@ Auth; DB; Storage; Realtime
 
 
 * MCP servers :
+
+* What is ths MCP servers : 
+An MCP server (in the Model Context Protocol sense) is a standalone process/service that exposes a set of capabilities or 
+“tools” (APIs/actions/data) to an LLM-enabled host via a standard RPC/schema. 
+The MCP server advertises what it can do,
+ accepts structured requests coming from an MCP client embedded in the host app, 
+ executes the requested action (e.g., query a DB, read files, call GitHub), 
+ then returns structured results — all via the MCP protocol (which uses JSON-RPC 2.0). 
+Think of an MCP server as a smart adapter between an LLM and a real system.
